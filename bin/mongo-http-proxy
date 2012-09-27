@@ -4,7 +4,7 @@ var args = process.argv.slice(2)
 var proxyPort  = 8000
 var targetHost = 'localhost'
 var targetPort = 27080
-var acl = '../etc/acl.json'
+var acl;
 
 var argv = require('optimist')
 	.alias('p', 'proxyPort')
@@ -32,5 +32,5 @@ if(argv.f) {
 }
  
 var proxy = require('../lib/proxy')
-    proxy.start(proxyPort,targetHost,targetPort,acl)
+proxy.start(proxyPort,targetHost,targetPort,acl)
 console.log("Mongo-http-proxy is running on port " + proxyPort + ", target is " + targetHost + ":" + targetPort)

@@ -17,6 +17,40 @@ ACL - relate users to databases and collections
 
 Makes it simple to access this proxy directly from javascripts without jsonp or creating your own proxy.
 
+**Javascipt API that simplifies usage**
+
+
+    mongodb.request.get({
+        baseUri:'http://localhost:8000',
+        database:'demo',
+        collection:'demo',
+        method:'_find',
+        criteria:{name:'johan'},
+        sort:{age:-1},
+        user:'demo',
+        passwd:'demo123'
+        },printResult)
+    }
+
+    var printResult =  {
+
+       error:function(err) {
+          console.log(err);
+       },
+
+       success:function(json) {
+          $.each(json, function (_, value) {
+                handleRow(value);
+            });
+       }
+       
+       handleRow:function(row) {
+           var name = row.name
+           var age  = row.age
+           console.log(name + ' is ' + age + ' years old' )
+       }
+    }
+
 ## Install
 
 TODO
