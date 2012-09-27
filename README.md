@@ -73,6 +73,8 @@ Makes it simple to access this proxy directly from javascripts without jsonp or 
     
 ## TODOs
 
+*Perhaps use other framework for basic auth*
+
 *ACL should of course support multiple databases and collections*
 
 *Fix so that we can use an API token instead of user:pass for each request*
