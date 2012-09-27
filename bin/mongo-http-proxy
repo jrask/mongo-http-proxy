@@ -15,7 +15,7 @@ var argv = require('optimist')
 	.argv;
 
 if(argv.H) {
-	console.log("Usage: mongo-http-proxy -H [--help] -p [--proxyPort:num] -h [--targetHost:string] -t [--targetPort:num]")
+	console.log("Usage: mongo-http-proxy -H [--help] -p [--proxyPort:num] -h [--targetHost:string] -t [--targetPort:num] -f [--file:string(aclFilePath)]")
 	return
 }
 if(argv.p) {
