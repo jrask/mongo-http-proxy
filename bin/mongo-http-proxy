@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var args = process.argv.slice(2)
+var proxyPort  = 8000
+var targetHost = 'localhost'
+var targetPort = 27080
+var acl = '../etc/acl.json'
+
+var argv = require('optimist')
+	.alias('p', 'proxyPort')
+	.alias('h', 'targetHost')
+	.alias('t', 'targetPort')
+	.alias('H', 'help')
+	.alias('f','file')
+	.argv;
+
+if(argv.H) {
+	console.log("Usage: mongo-http-proxy -H [--help] -p [--proxyPort:num] -h [--targetHost:string] -t [--targetPort:num]")
+	return
+}
+if(argv.p) {
+	proxyPort = argv.p
+}
+if(argv.p) {
+	targetHost = argv.h
+}
+if(argv.t) {
+	proxyPort = argv.t
+}
+if(argv.f) {
+    acl = argv.f
+}
+ 
+var proxy = require('../lib/proxy')
+    proxy.start(proxyPort,targetHost,targetPort,acl)
+console.log("Mongo-http-proxy is running on port " + proxyPort + ", target is " + targetHost + ":" + targetPort)
