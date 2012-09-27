@@ -31,7 +31,6 @@ Makes it simple to access this proxy directly from javascripts without jsonp or 
 
 **Javascipt API that simplifies usage**
 
-
     mongodb.request.get({
         baseUri:'http://localhost:8000',
         database:'demo',
@@ -40,29 +39,23 @@ Makes it simple to access this proxy directly from javascripts without jsonp or 
         criteria:{name:'johan'},
         sort:{age:mongodb.sort.ASC},
         user:'demo',
-        passwd:'demo123'
-        },printResult)
-    }
-
-    var printResult =  {
-
-       error:function(err) {
-          console.log(err);
-       },
-
-       success:function(json) {
-          $.each(json, function (_, value) {
-                handleRow(value);
+        passwd:'demo123',
+        error:function (data) {
+            alert(JSON.stringify(data))
+        },
+        success:function (data) {
+            $.each(data.results, function (_, value) {
+               handleRow(value);
             });
-       }
-       
-       handleRow:function(row) {
-           var name = row.name
-           var age  = row.age
-           console.log(name + ' is ' + age + ' years old' )
-       }
-    }
+        }
+    })
 
+    function handleRow(row) {
+        var name = row.name
+        var age  = row.age
+        console.log(name + ' is ' + age + ' years old' )
+    }
+    
 ## Install
 
     npm pack
